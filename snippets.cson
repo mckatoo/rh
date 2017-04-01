@@ -1,0 +1,91 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# https://atom.io/docs/latest/using-atom-basic-customization#cson
+
+
+# Asset para Blade do Laravel
+
+'.blade.php':
+    'Token csrf': #Insere Token csrf
+        'prefix': 'csrf_mck'
+        'body': '{{csrf_field()}}'
+    'Asset do Blade': #Insere entrada para assets do blade
+        'prefix': 'asset_mck'
+        'body': '"{{ asset(\'$1\') }}"'
+    'URL do Blade': #Insere entrada para url do blade
+        'prefix': 'url_mck'
+        'body': '"{{ url(\'$1\') }}"'
+    'rota do tipo GET no Blade': #Insere entrada para rota do blade
+        'prefix': 'route_GET_mck'
+        'body': '"{{ route(\'$1\', [\$$2\,\$$3]) }}"'
+    'rota do tipo POST no Blade': #Insere entrada para rota do blade
+        'prefix': 'route_POST_mck'
+        'body': '"{!! route($1) !!}"'
+    # Collective
+    'Forms do Collective':
+      'prefix': 'form_coll'
+      'body': """
+      {!! Form::open(['route' => ['$1'], 'method' => '${2:GET}']) !!}
+      \t$3
+      {!! Form::close() !!}
+      """
+    'Label e Text do Collective':
+      'prefix': 'input_coll'
+      'body': """
+      {!! Form::label('${1:Name}', '${2:Valor}', ['class' => 'control-label']) !!}
+      {!! Form::${3:TipoDoCampo}('${1:Name}', '${4:Valor}', ['class' => 'form-control', 'id' => '${1:IdCss}']) !!}
+      """
+
+# Rotas do tipo GET e POST
+'.php':
+    'Rotas do tipo GROUP': #Insere grupo de rotas
+        'prefix': 'route_GROUP'
+        'body': """
+        Route::group(['as' => '$1.', 'prefix' => '$2'], function()
+        {
+            $3
+        });
+        """
+    'Rotas do tipo GET': #Insere rotas do tipo GET
+        'prefix': 'route_GET'
+        'body': """
+        Route::get('$1', ['as' => '$2', 'uses' => '$3']);
+        """
+    'Rotas do tipo GET com function': #Insere rotas do tipo GET
+        'prefix': 'route_GET_function'
+        'body': """
+        Route::get('$1', function($2){
+            return $3;
+        });
+        """
+    'Rotas do tipo POST': #Insere rotas do tipo POST
+        'prefix': 'route_POST'
+        'body': """
+        Route::post('{id}/$1', ['as' => '$2', 'uses' => '$3']);
+        """
+
+    'Comentários Laravel config':
+        'prefix': 'cm'
+        'body': """
+        /*
+         * $1
+         */
+        """

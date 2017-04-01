@@ -1,0 +1,255 @@
+@media (min-width: 768px) {
+    .navbar-brand{
+        padding: 8px 10px;
+    }
+
+    .footer {
+    	position: fixed;
+    	bottom: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 60px;
+    	background-color: #212121;
+    	padding-top: 10px;
+    	text-align: center;
+    }
+
+    .footer a {
+        color: #FFFFFF;
+    }
+
+    #wrapper {
+        /*bottom: 60px;*/
+        padding-bottom: 60px;
+    }
+}
+
+small {
+    font-style: oblique;
+    font-weight: bold;
+}
+.navbar-top-links .dropdown-menu li a{
+    color: #337ab7;
+}
+
+.pull-right-m{
+    padding: 0px;
+    text-align: right;
+    width: auto;
+}
+
+.avalprof{
+    height: 250px !important;
+    width: auto;
+}
+
+.panel-footer-m{
+    text-align: right;
+}
+
+fieldset{
+    display: inherit;
+    min-width: inherit;
+    margin: inherit;
+    border: solid 1px #CBCBCB;
+    border-radius: 5px;
+    padding: 0px 10px 10px 10px;
+}
+
+legend{
+    display: inherit;
+    width: inherit;
+    padding: inherit;
+    margin: 0px;
+    font-size: inherit;
+    line-height: inherit;
+    color: #555;
+    border: none;
+}
+
+.bar {
+    height: 18px;
+    background: green;
+}
+
+.tdbtn {
+    text-align: center;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle !important;
+}
+
+.bottom {
+    display: table-cell;
+    width: 100%;
+    vertical-align: bottom !important;
+}
+
+.top {
+    display: table-cell;
+    vertical-align: super !important;
+}
+
+h5{
+    margin: 0px;
+    padding: 0px;
+}
+
+.form-k {
+     display: inline-table;
+     padding: 20px 0px;
+}
+
+.form-group-k {
+    display: block;
+    vertical-align: bottom;
+    margin-bottom: 15px;
+    height: 80px;
+}
+
+.label-k {
+    display: table-cell;
+    height: 40px;
+    vertical-align: bottom;
+}
+
+.margin-padding-zero{
+    margin: 0px;
+    padding: 0px;
+}
+
+.title{
+    font-weight: bolder;
+    text-shadow: 3px 2px 4px #b7b9be;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.box-title{
+    border: 2px solid #e9e9e9;
+    background-color: #e9e9e9;
+    width: 325px;
+    text-align: center;
+    height: 50px;
+    position: relative;
+    display: inline-table;
+    border-radius: 30px 30px 0px 0px;
+}
+
+.overflow {
+    overflow: auto;
+    height: 123px;
+}
+
+.auto-height {
+    height: auto;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.wrap {
+    white-space: pre-wrap !important;
+}
+
+.text-overflow {
+    height: 90px;
+    overflow: auto;
+}
+
+.inline {
+    display: inline;
+}
+
+.foto3x4 {
+    min-width: 3cm;
+    min-height: 4cm;
+    width: 3cm;
+    height: 4cm;
+}
+
+.middle {
+    vertical-align: middle !important;
+}
+
+#resizer { display: none; }
+
+.rodape{
+    margin-bottom: 5px;
+}
+
+.relatorio-titulo{
+    background: #606060 !important;
+    color: #FFFFFF !important;
+}
+
+.relatorio-titulo .text-muted{
+    color: #FFFFFF !important;
+}
+
+.relatorio-titulo{
+    font-weight: bolder;
+    color: #FFFFFF !important;
+}
+
+.background-mini-menu {
+    background-color: rgba(255, 165, 0, 0.75);
+    width: 410px;
+    padding: 5px;
+    border-bottom-left-radius: 13px;
+    left: inherit;
+}
+
+.background-mini-menu .navbar-nav>li>a {
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+}
+
+.background-mini-menu .navbar-brand {
+    color: #fff;
+    background-color: #fff;
+    border-color: #fff;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.background-mini-menu .navbar-nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.background-mini-menu .navbar-nav>li>a:focus {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+}
+
+.a-mini-menu {
+    padding: 15px 10px !important;
+}
+
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+
+
+    .nao-imprimir {
+        display: none;
+    }
+
+    .rodape{
+        display: none;
+    }
+
+    .row{
+        page-break-after: auto !important;
+        page-break-inside: avoid;
+    }
+    .relatorio{
+        page-break-after: always;
+    }
+}

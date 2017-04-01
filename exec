@@ -1,0 +1,4 @@
+#!/bin/bash
+COMANDO=$1
+
+docker exec -ti rh-dev $COMANDO

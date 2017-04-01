@@ -1,0 +1,41 @@
+# pack-refs with: peeled fully-peeled 
+b72949ccf2f640e7de66ff7dd92d83f577ce782e refs/heads/1.2
+b7a5e18824117d8b65942e9aa77425d9b7dd7ff8 refs/heads/master
+8dca8fd3fe0e4aa2f3b3fa5b7ed34cf74bcf56fc refs/notes/github-comments
+3c5b6e477b7677c6c880016ad2a115d8b460d0a8 refs/pull/13/head
+0d4edd309cf2b6f9b2d105ab3c6f4ec50a47a383 refs/pull/14/head
+1faa9f47b8d6fcfb1167837cafb1c5d70886388f refs/pull/16/head
+07bdcbcefbe82a8dea88c3a17074b66d4ebb0d44 refs/pull/17/head
+7d44655ff4dbe0868c026983211d6e6564c44301 refs/pull/19/head
+106f9994b73ad128771b979de594ca825a5c5e04 refs/pull/20/head
+c292f8d6d807ef87ebcdea6c0712f19c1ae64cc8 refs/pull/20/merge
+a98fb66a7722ecd4598c1693707cb073df9e9d6b refs/pull/21/head
+5ec35c451c106851556f3960618fac948d761459 refs/pull/21/merge
+a5b33d0e65ef62975de463366b9e096e45c90136 refs/pull/22/head
+a57b0bcc2a41e6420f0e9a8dbc7940d08bd5f945 refs/pull/23/head
+ce6e4511272a73550155d547cf0dc5fd174cb71f refs/pull/24/head
+d2be20f7a24474343452961e483d2030add91d1b refs/pull/25/head
+5d874d7d3208bed437082ce9e5991251c28158bf refs/pull/26/head
+6de65bece84b3b2f387a598c8d3160d26967e946 refs/pull/27/head
+7231564bd3d00a5a5fc5ff8f229c983d03ad9475 refs/pull/29/head
+9a37890b79108b3fdc8bfb83cc4a2c160fc3135d refs/pull/29/merge
+96a867bd66026c404356fdf96e5d77a25c0aa460 refs/pull/30/head
+583ad833a680daaf686af51096b0033fd5e0390c refs/pull/31/head
+c2aecc2127c92e5e6a77b9b23bf3f409ffd56e4a refs/pull/32/head
+264c32048ac35fcc03c1aec845bfc6f9ade39426 refs/pull/33/head
+40898a211375aa8a2ae2cdd93e0f19d0ce1efa52 refs/pull/35/head
+3410546c8a5b291755b15be55132771283b0fc30 refs/pull/36/head
+c9bc15554274e798a088e054df1af17f86df31fb refs/pull/38/head
+c44c4db8751914e0e4fbe92b55efe757fed8b5eb refs/pull/39/head
+ac0e1f1aad2c168b0b07187849d0de601fd7d9ec refs/pull/40/head
+230a35091f9862834a4dbce8c24aa7fa7bc0f8d1 refs/pull/5/head
+3a10522cf338cb584d1089979caa03abcda9fe51 refs/pull/6/head
+bc3547883d588b6ba9a4153e5a61cc4fb751bb5f refs/tags/v1.1.0
+^6dc849e4a8954177748320d06721d6bc972129eb
+e8ccc34671e19112b27d8b24bddeb52a55a73a11 refs/tags/v1.1.1
+^6048f44ff583958353fd8540e971565c306bb99b
+77d3ae34f23d8cd08c934f96adcd8d51c5a29ffa refs/tags/v1.2.0
+^a68ffcabdeeb2c7c253073ab49c86a91a551d8dd
+ac50c470531243944f977b8de75be0b684a9cb51 refs/tags/v1.2.1
+b37020aa976fa52d3de9aa904aa2522dc518f79c refs/tags/v1.2.2
+776503d3a8e85d4f9a1148614f95b7a608b046ad refs/tags/v2.0.0
