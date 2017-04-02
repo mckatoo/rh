@@ -80,7 +80,7 @@
                                                 {!! Form::label('tipo', 'Tipo de usuário', ['class' => 'control-label', 'id' => 'tipo']) !!}
                                                 {!! Form::select('tipo',$tipo,null,['id' => 'tipo','placeholder' => 'Selecione...','class' => 'form-control'],null) !!}
                                             </div>
-                                            <div class="modal-footer">
+                                            <div class="modal-footer col-lg-12">
                                                 <button type="reset" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                                 <button type="submit" class="btn btn-primary">Salvar</button>
                                             </div>

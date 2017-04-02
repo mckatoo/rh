@@ -645,6 +645,10 @@ h5{
     color: #FFFFFF !important;
 }
 
+input[type="file"] {
+    height: auto;
+}
+
 @media print {
     body {
         -webkit-print-color-adjust: exact;

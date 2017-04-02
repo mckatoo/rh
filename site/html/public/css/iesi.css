@@ -231,6 +231,10 @@ h5{
     padding: 15px 10px !important;
 }
 
+input[type="file"] {
+    height: auto;
+}
+
 @media print {
     body {
         -webkit-print-color-adjust: exact;
