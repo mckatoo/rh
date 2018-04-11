@@ -74,7 +74,9 @@ class AuthController extends Controller
             return redirect(route('index'));
         } else {
             try {
-                return view('auth.login');
+                $tipo = \App\TipoUser::where('tipo','Professor')->pluck('id');
+                $professores = \App\User::where('tipo_User_id',$tipo)->orderBy('name')->lists('name','id')->toArray();
+                return view('auth.login', compact('professores'));
             } catch (Exception $e) {
                 return view('login')->with('erro', $e);
             }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run -ti --name=rh-dev --link=db \
+docker run -ti --name=rh --link=mysql \
 -p 802:80 \
 -v $(pwd)/php-fpm.conf:/etc/php/7.0/fpm/php-fpm.conf \
 -v $(pwd)/site:/var/www \

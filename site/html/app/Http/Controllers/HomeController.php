@@ -62,6 +62,7 @@ class HomeController extends Controller
             $pendentes = \App\User::where('tipo_User_id',$idTipoProf)->get();
             \App\Notificacoes::create(['notificacao' => Auth::user()->name.' entrou no sistema.']);
             return view('dashboard', compact('pendentes'));
+            return view('dashboard');
         } elseif ($prof->count()<1) {
             \App\Notificacoes::create(['notificacao' => 'O Professor '.Auth::user()->name.' entrou no sistema.']);
             return redirect(route('prof.create'));

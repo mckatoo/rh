@@ -21,7 +21,18 @@ class ProfessorController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => ['create']]);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
 
@@ -34,25 +45,25 @@ class ProfessorController extends Controller
         return view('prof_pendentes', compact('pendentes','professores'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = null)
     {
-        $email = \Auth::user()->email;
-        $name = strtoupper(\Auth::user()->name);
+        if ($id != null) {
+            // dd($id);
+            $user = \App\User::where('id',$id);
+            $email = $user->pluck('email');
+            $name = strtoupper($user->name);
+            $tipoU = $user->pluck('tipo_User_id')->pluck('');
+            $tipo = \App\TipoUser::where('tipo',$tipoU)->pluck('tipo');
+        }else{
+            $email = \Auth::user()->email;
+            $name = strtoupper(\Auth::user()->name);
+        }
         $tipo = \Auth::user()->tipo->tipo;
         if ($tipo == 'Professor') {
             $ext = 'base';
@@ -63,7 +74,6 @@ class ProfessorController extends Controller
             $div = 'id=page-wrapper';
             return view('cad-professores',compact('ext','div'));
         }
-
     }
 
     /**

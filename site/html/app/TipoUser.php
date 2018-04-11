@@ -11,5 +11,10 @@ class TipoUser extends Model
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     protected $table = 'tipo_User';
-
+    
+    public function users()
+    {
+        return $this->hasMany('App\User');
+    }
+    
 }

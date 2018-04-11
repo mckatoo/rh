@@ -58,6 +58,18 @@
                         </fieldset>
                         {!! Form::close() !!}
                     </div>
+                    <div class="panel-body">
+                        
+                        {!! Form::label('primeiro', 'Professor, caso este seja seu primeiro acesso, selecione seu nome abaixo para realizar o cadastro.', ['class' => 'control-label']) !!}
+                        
+                        {!! Form::select('professores', $professores, null, [
+                            'placeholder' => 'Selecione...',
+                            'class' => 'form-control',
+                            'id' => 'selectProfessor',
+                            'onchange' => 'location = \'/professores/novo/\'+this.value'
+                        ]) !!}
+                        
+                    </div>
                 </div>
             </div>
         </div>
