@@ -31,10 +31,6 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => ['getLogout', 'getRegister', 'postRegister']]);
-    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -61,8 +57,8 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name' => strtoupper($data['name']),
+            'email' => strtolower($data['email']),
             'tipo_User_id' => $data['tipo'],
             'password' => bcrypt($data['password']),
         ]);

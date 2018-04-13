@@ -3,8 +3,8 @@
         <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/navbar-brand.png') }}" alt="IESI - Comissão Própria de Avaliação" /></a>
         <ul class="nav navbar-nav">
             <li>
-                <a class=".a-mini-menu" data-toggle="modal" href='#modal-id'>Trocar Senha</a>
-                <div class="modal fade" id="modal-id" data-backdrop="false">
+                <a class=".a-mini-menu" data-toggle="modal" href='#modalSenha'>Trocar Senha</a>
+                <div class="modal fade" id="modalSenha" data-backdrop="false">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -23,11 +23,13 @@
                                 {{session('erro')}}
                             </div>
                         @endif
+                        
                         <div class="hidden">
-                            {!! Form::text('name', Auth::user()->name) !!}
-                            {!! Form::text('tipo', Auth::user()->tipo->id) !!}
-                            {!! Form::email('email', Auth::user()->email) !!}
+                            {!! Form::text('name', $user[0]['name']) !!}
+                            {!! Form::text('tipo', $user[0]['tipo_User_id']) !!}
+                            {!! Form::email('email', $user[0]['email']) !!}
                         </div>
+                        
                         <div class="form-group">
                             {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}
                             {!! Form::password('password', ['class' => 'form-control', 'id' => 'password','required' => 'required', 'autofocus' => 'autofocus']) !!}
@@ -37,7 +39,7 @@
                             {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation','required' => 'required']) !!}
                         </div>
                         <div class="modal-footer">
-                                <button type="reset" class="btn btn-primary">Cancelar</button>
+                                <button type="reset" onclick="$('#modalSenha').modal('toggle');" class="btn btn-primary">Cancelar</button>
                                 <button type="submit" class="btn btn-primary">Atualizar</button>
                         </div>
                         {!! Form::close() !!}

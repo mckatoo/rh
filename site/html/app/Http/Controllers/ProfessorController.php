@@ -19,22 +19,11 @@ use DateTime;
 class ProfessorController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth',['except' => ['create']]);
-    }
-
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
-
 
     public function pendentes()
     {
@@ -54,21 +43,18 @@ class ProfessorController extends Controller
     public function create($id = null)
     {
         if ($id != null) {
-            // dd($id);
-            $user = \App\User::where('id',$id);
-            $email = $user->pluck('email');
-            $name = strtoupper($user->name);
-            $tipoU = $user->pluck('tipo_User_id')->pluck('');
-            $tipo = \App\TipoUser::where('tipo',$tipoU)->pluck('tipo');
+            $user = \App\User::where('id',$id)->get()->toArray();
         }else{
-            $email = \Auth::user()->email;
-            $name = strtoupper(\Auth::user()->name);
+            $user = \Auth::user();
         }
-        $tipo = \Auth::user()->tipo->tipo;
+
+        $tipoU = $user[0]['tipo_User_id'];
+        $tipo = \App\TipoUser::where('id',$tipoU)->get()[0]['tipo'];
+        
         if ($tipo == 'Professor') {
             $ext = 'base';
             $div = 'class=container';
-            return view('cad-professores', compact('email','name','ext','div'));
+            return view('cad-professores', compact('user','ext','div'));
         }else{
             $ext = 'admin';
             $div = 'id=page-wrapper';
@@ -95,7 +81,11 @@ class ProfessorController extends Controller
             $foto->move($localArmazem, $foto_sanitizada);
             $prof->foto = $foto_sanitizada;
         }
-        $prof->users_id = Auth::user()->id;
+        if (Auth::check()) {
+            $prof->users_id = Auth::user()->id;
+        }else{
+            $prof->users_id = \App\User::where('email',$request->email)->pluck('id');
+        }
         $prof->nome = $request->nome;
         $cpf = $request->cpf;
         $cpf = preg_replace("/\D+/", "", $cpf);
@@ -125,7 +115,12 @@ class ProfessorController extends Controller
 
         $prof->save();
         $id_prof = $prof->id;
-        $tipouser = Auth::user()->tipo->tipo;
+        if (Auth::check()) {
+            $tipouser = Auth::user()->tipo->tipo;
+        }else{
+            dd($request->all());
+            $tipouser = \App\TipoUser::where('tipo',$tipoU)->pluck('id');
+        }
         if ($tipouser == 'Professor') {
             $ext = 'base';
             $div = 'class=container';

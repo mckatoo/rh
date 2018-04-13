@@ -16,7 +16,7 @@
                 <i class="fa fa-database fa-fw"></i> Cadastros <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-alerts">
-            @if (Auth::user()->tipo->tipo !== 'Professor')
+            {{--  @if (Auth::user()->tipo->tipo !== 'Professor')  --}}
                 <li>
                     <a href="{{ route('registro') }}">
                         <i class="fa fa-user fa-fw"></i>
@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li class="divider"></li>
-            @endif
+            {{--  @endif  --}}
                 <li>
                     <a href="{{ route('cursos.index') }}">
                         <i class="fa fa-twitter fa-fw"></i>
@@ -59,15 +59,23 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-users fa-fw"></i> {{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
+                <i class="fa fa-users fa-fw"></i>
+                
+                @if (Auth::check())
+                    {{ Auth::user()->name }}
+                @else
+                    {{ $user[0]['name'] }}
+                @endif
+                
+                <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
-                    <a href="{{ route('perfil',Auth::user()->id) }}">
+                    {{--  <a href="{{ route('perfil',Auth::user()->id) }}">  --}}
                     <div class="inline">
                         Perfil
                     </div>
-                    </a>
+                    {{--  </a>  --}}
                 </li>
                 <li class="divider"></li>
                 <li>

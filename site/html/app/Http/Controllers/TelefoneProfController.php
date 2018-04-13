@@ -18,12 +18,6 @@ class TelefoneProfController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     public function index()
     {
         $id_prof = \App\Professor::where('users_id',Auth::id())->first()->id;

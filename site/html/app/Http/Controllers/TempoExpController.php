@@ -16,13 +16,7 @@ class TempoExpController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    
-    public function index()
+     public function index()
     {
         $email = Auth::user()->email;
         $tipouser = Auth::user()->tipo->tipo;

@@ -10,11 +10,6 @@ use Auth;
 
 class RelatoriosController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function professor(Request $request)
     {
         if ($request->professor == "") {

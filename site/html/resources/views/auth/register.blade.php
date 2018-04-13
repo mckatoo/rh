@@ -9,7 +9,7 @@
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    {{--  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->  --}}
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -32,13 +32,27 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+        
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </div>
+        @endif
+        @if(session('erro'))
+            <div class="alert alert-danger">
+                {{session('erro')}}
+            </div>
+        @endif
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-user fa-fw"></i> CADASTROS DE USUÁRIOS
-                        <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href='#modal-id'>Novo</a>
-                        <div class="modal fade" id="modal-id">
+
+                        <a class="btn btn-xs btn-primary pull-right" data-toggle="modal" href='#modalUsuario'>Novo</a>
+                        <div class="modal fade" id="modalUsuario">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -48,18 +62,6 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             {!! Form::open(['url' => ['registrar'], 'method' => 'POST', 'autocomplete' => 'off']) !!}
-                                            @if (count($errors) > 0)
-                                                <div class="alert alert-danger">
-                                                    @foreach ($errors->all() as $error)
-                                                        {{ $error }}
-                                                    @endforeach
-                                                </div>
-                                            @endif
-                                            @if(session('erro'))
-                                                <div class="alert alert-danger">
-                                                    {{session('erro')}}
-                                                </div>
-                                            @endif
                                             <div class="form-group col-lg-6">
                                                 {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
                                                 {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'name', 'autofocus' => 'autofocus']) !!}
@@ -81,7 +83,7 @@
                                                 {!! Form::select('tipo',$tipo,null,['id' => 'tipo','placeholder' => 'Selecione...','class' => 'form-control'],null) !!}
                                             </div>
                                             <div class="modal-footer col-lg-12">
-                                                <button type="reset" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                <button type="reset" class="btn btn-default" onclick="$('#modalUsuario').modal('toggle')">Cancelar</button>
                                                 <button type="submit" class="btn btn-primary">Salvar</button>
                                             </div>
                                             {!! Form::close() !!}
