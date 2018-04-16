@@ -1,0 +1,301 @@
+
+
+Sun Apr 15 12:37:42 2018
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 4.4.0-119-generic (#143-Ubuntu SMP Mon Apr 2 16:08:24 UTC 2018) x86_64
+Compiler: GCC 5.3
+ext2fs lib: 1.42.13, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+/dev/sda: LBA, HPA, LBA48 support
+/dev/sda: size       234441648 sectors
+/dev/sda: user_max   234441648 sectors
+/dev/sda: native_max 234441648 sectors
+/dev/sdb: LBA, HPA, LBA48, DCO support
+/dev/sdb: size       976773168 sectors
+/dev/sdb: user_max   976773168 sectors
+/dev/sdb: native_max 976773168 sectors
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/sda - 120 GB / 111 GiB - CHS 14593 255 63, sector size=512 - KINGSTON SV300S37A120G, S/N:50026B785300765A, FW:583ABBF0
+Disk /dev/sdb - 500 GB / 465 GiB - CHS 60801 255 63, sector size=512 - SAMSUNG HM501II, S/N:S2PMJ56B302481, FW:2AJ10003
+Disk /dev/sdc - 500 GB / 465 GiB - CHS 60800 255 63, sector size=512 - Samsung M3 Portable, FW:3
+
+Partition table type (auto): None
+Disk /dev/sdc - 500 GB / 465 GiB - Samsung M3 Portable
+Partition table type: Intel
+
+Analyse Disk /dev/sdc - 500 GB / 465 GiB - CHS 60800 255 63
+Geometry from i386 MBR: head=255 sector=63
+BAD_RS LBA=2410708 16450559
+check_part_i386 2 type EF: no test
+Current partition structure:
+ 2 P EFI (FAT-12/16/32)     150  15 14   150  90 24       4736
+
+Bad relative sector.
+No partition is bootable
+
+search_part()
+Disk /dev/sdc - 500 GB / 465 GiB - CHS 60800 255 63
+FAT12 at 150/15/14
+check_FAT: Unusual media descriptor (0xf8!=0xf0)
+FAT1 : 1-4
+FAT2 : 5-8
+start_rootdir : 9
+Data : 41-4732
+sectors : 4736
+cluster_size : 4
+no_of_cluster : 1173 (2 - 1174)
+fat_length 4 calculated 4
+heads/cylinder 64 (FAT) != 255 (HD)
+sect/track 32 (FAT) != 63 (HD)
+
+FAT12 at 150/15/14
+     FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Search for partition aborted
+
+Results
+   L FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+
+Hint for advanced users. dmsetup may be used if you prefer to avoid to rewrite the partition table for the moment:
+echo "0 4736 linear /dev/sdc 2410708" | dmsetup create test0
+Change partition type:
+   L FAT32 LBA              150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+
+
+dir_partition inode=0
+   L FAT32 LBA              150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L FAT32 LBA              150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+
+dir_partition inode=3
+   L FAT32 LBA              150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=3(0x3), pos=2410753
+Directory /EFI/BOOT
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       4 -rwxr-xr-x     0      0   1289424 20-Apr-2016 13:58 BOOTX64.EFI
+     634 -rwxr-xr-x     0      0   1099128 20-Apr-2016 13:58 GRUBX64.EFI
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+Change partition type:
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+
+
+dir_partition inode=0
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+
+dir_partition inode=3
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=3(0x3), pos=2410753
+Directory /EFI/BOOT
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       4 -rwxr-xr-x     0      0   1289424 20-Apr-2016 13:58 BOOTX64.EFI
+     634 -rwxr-xr-x     0      0   1099128 20-Apr-2016 13:58 GRUBX64.EFI
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+add_ext_part_i386: max
+add_ext_part_i386: min
+
+interface_write()
+ 1 E extended               150   0  1   150 254 63      16065
+ 5 L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+NTFS signature is missing.
+NTFS signature is missing.
+
+search_part()
+Disk /dev/sdc - 500 GB / 465 GiB - CHS 60800 255 63
+FAT12 at 150/15/14
+check_FAT: Unusual media descriptor (0xf8!=0xf0)
+FAT1 : 1-4
+FAT2 : 5-8
+start_rootdir : 9
+Data : 41-4732
+sectors : 4736
+cluster_size : 4
+no_of_cluster : 1173 (2 - 1174)
+fat_length 4 calculated 4
+heads/cylinder 64 (FAT) != 255 (HD)
+sect/track 32 (FAT) != 63 (HD)
+
+FAT12 at 150/15/14
+     FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Search for partition aborted
+
+Results
+   L FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+
+Hint for advanced users. dmsetup may be used if you prefer to avoid to rewrite the partition table for the moment:
+echo "0 4736 linear /dev/sdc 2410708" | dmsetup create test0
+Change partition type:
+   L FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+
+
+dir_partition inode=0
+   L FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+
+dir_partition inode=3
+   L FAT12                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=3(0x3), pos=2410753
+Directory /EFI/BOOT
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       4 -rwxr-xr-x     0      0   1289424 20-Apr-2016 13:58 BOOTX64.EFI
+     634 -rwxr-xr-x     0      0   1099128 20-Apr-2016 13:58 GRUBX64.EFI
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+Change partition type:
+   L hid. HPFS/NTFS         150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Not an exFAT boot sector.
+
+
+dir_partition inode=0
+   L hid. HPFS/NTFS         150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L hid. HPFS/NTFS         150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+
+dir_partition inode=3
+   L hid. HPFS/NTFS         150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=3(0x3), pos=2410753
+Directory /EFI/BOOT
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       4 -rwxr-xr-x     0      0   1289424 20-Apr-2016 13:58 BOOTX64.EFI
+     634 -rwxr-xr-x     0      0   1099128 20-Apr-2016 13:58 GRUBX64.EFI
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+Change partition type:
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+
+
+dir_partition inode=0
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+
+dir_partition inode=2
+   L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+     FAT12, blocksize=2048, 2424 KB / 2368 KiB
+FAT: cluster=2(0x2), pos=2410749
+Directory /EFI
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 .
+       0 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 ..
+       3 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 BOOT
+Directory /
+       2 drwxr-xr-x     0      0         0 20-Apr-2016 13:58 EFI
+add_ext_part_i386: max
+add_ext_part_i386: min
+
+interface_write()
+ 1 E extended               150   0  1   150 254 63      16065
+ 5 L FAT32                  150  15 14   150  90 24       4736 [NO NAME]
+simulate write!
+
+write_mbr_i386: starting...
+write_all_log_i386: starting...
+write_all_log_i386: CHS: 150/0/1,lba=2409750
+
+TestDisk exited normally.

@@ -50,15 +50,16 @@ class ProfessorController extends Controller
 
         $tipoU = $user[0]['tipo_User_id'];
         $tipo = \App\TipoUser::where('id',$tipoU)->get()[0]['tipo'];
+
         
-        if ($tipo == 'Professor') {
-            $ext = 'base';
-            $div = 'class=container';
+        $ext = 'base';
+        $div = 'class=container';
+        $prof = \App\Professor::where('users_id',$id)->first();
+    
+        if ($prof->count() > 0) {
+            return view('cad-professores', compact('user','ext','div','prof'));
+        } else {
             return view('cad-professores', compact('user','ext','div'));
-        }else{
-            $ext = 'admin';
-            $div = 'id=page-wrapper';
-            return view('cad-professores',compact('ext','div'));
         }
     }
 
@@ -70,22 +71,14 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        $prof = new Professor();
-        if ($request->file('foto') !== null) {
-            $foto = $request->file('foto');
-            $localArmazem = storage_path().'/docprof/'.$prof->id.'/foto/';
-            $foto_sanitizada = filter_var($foto->getClientOriginalName(), FILTER_SANITIZE_URL);
-            if (file_exists($localArmazem.'/'.$prof->foto)) {
-                unlink($localArmazem.'/'.$prof->foto);
-            }
-            $foto->move($localArmazem, $foto_sanitizada);
-            $prof->foto = $foto_sanitizada;
+        $prof = \App\Professor::where('email',$request->email);
+        if ($prof->count() > 0) {
+            $prof = $prof->first();
+        } else {
+            $prof = new Professor();
         }
-        if (Auth::check()) {
-            $prof->users_id = Auth::user()->id;
-        }else{
-            $prof->users_id = \App\User::where('email',$request->email)->pluck('id');
-        }
+
+        $prof->users_id = \App\User::where('email',$request->email)->pluck('id');
         $prof->nome = $request->nome;
         $cpf = $request->cpf;
         $cpf = preg_replace("/\D+/", "", $cpf);
@@ -113,25 +106,34 @@ class ProfessorController extends Controller
         $prof->tempo_mag_sup_exp_pro_id = $id_tempo_mag;
         $prof->tempo_exp_pro_fora_mag_id = $id_tempo_exp;
 
-        $prof->save();
-        $id_prof = $prof->id;
-        if (Auth::check()) {
-            $tipouser = Auth::user()->tipo->tipo;
-        }else{
-            dd($request->all());
-            $tipouser = \App\TipoUser::where('tipo',$tipoU)->pluck('id');
-        }
-        if ($tipouser == 'Professor') {
-            $ext = 'base';
-            $div = 'class=container';
+        if ($request->file('foto') !== null) {
+            $foto = $request->file('foto');
+            $localArmazem = storage_path().'/docprof/'.$prof->id.'/foto/';
+            $foto_sanitizada = filter_var($foto->getClientOriginalName(), FILTER_SANITIZE_URL);
+            if (File::exists($localArmazem.'/'.$prof->foto)) {
+                File::delete($localArmazem.'/'.$prof->foto);
+            }
+            $foto->move($localArmazem, $foto_sanitizada);
+            $prof->foto = $foto_sanitizada;
+            $prof->save();
         } else {
-            $ext = 'admin';
-            $div = 'id=page-wrapper';
+            $prof->save();
         }
 
-        \App\Notificacoes::create(['notificacao' => 'O Professor '.Auth::user()->name.' atualizou seus dados pessoais.']);
+        $id_prof = $prof->id;
 
-        return view('arquivo-tempo-mag')->with(compact('tempo_mag','id_tempo_mag','id_prof','ext','div'));
+        $tipoU = \App\User::where('email',$request->email)->pluck('tipo_User_id');
+        $tipouser = \App\TipoUser::where('tipo',$tipoU)->pluck('id');
+
+        $ext = 'base';
+        $div = 'class=container';
+
+        $user = \App\User::where('email',$request->email)->get()->toArray();
+
+
+        \App\Notificacoes::create(['notificacao' => 'O Professor '.$request->nome.' atualizou seus dados pessoais.']);
+
+        return view('arquivo-tempo-mag')->with(compact('tempo_mag','id_tempo_mag','id_prof','ext','div','user'));
     }
 
     /**
@@ -151,28 +153,28 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
-        $prof = \App\Professor::where('users_id',Auth::id())->first();
-        $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
-        $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
+    // public function edit()
+    // {
+    //     $prof = \App\Professor::where('users_id',Auth::id())->first();
+    //     $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
+    //     $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
 
-        $tipouser = Auth::user()->tipo->tipo;
-        if ($tipouser == 'Professor') {
-            $ext = 'base';
-            $div = 'class=container';
-        } else {
-            $ext = 'admin';
-            $div = 'id=page-wrapper';
-        }
+    //     $tipouser = Auth::user()->tipo->tipo;
+    //     if ($tipouser == 'Professor') {
+    //         $ext = 'base';
+    //         $div = 'class=container';
+    //     } else {
+    //         $ext = 'admin';
+    //         $div = 'id=page-wrapper';
+    //     }
 
-        try {
-            return view('edit-professores', compact('prof','tempo_mag','tempo_exp','ext','div'));
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+    //     try {
+    //         return view('edit-professores', compact('prof','tempo_mag','tempo_exp','ext','div'));
+    //     } catch (Exception $e) {
+    //         return $e->getMessage();
+    //     }
 
-    }
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -246,6 +248,7 @@ class ProfessorController extends Controller
     {
         $prof = \App\Professor::where('id',$prof_id)->first();
         $path = storage_path() . '/docprof/' . $prof_id . '/foto/' . $prof->foto;
+        // dd($path);
 
         if(!File::exists($path)) abort(404);
 

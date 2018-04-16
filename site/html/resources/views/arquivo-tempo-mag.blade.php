@@ -164,7 +164,7 @@
 
 
                             </fieldset>
-                            <a class="btn btn-primary pull-left" href="{{ route('prof.edit') }}">VOLTAR</a>
+                            <a class="btn btn-primary pull-left" href="{{ route('prof.create',$id_prof) }}">VOLTAR</a>
                             {{-- @if ($tempo_mag->arquivos->count() === 0) --}}
                                 {{-- <a href="{{ route('tempo_exp.index') }}" class="btn btn-primary pull-right disabled">PRÓXIMO</a> --}}
                             {{-- @else --}}

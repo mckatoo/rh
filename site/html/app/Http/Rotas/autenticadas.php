@@ -3,7 +3,7 @@
 // ROTAS AUTENTICADAS
 
 // Rotas para usuários
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     // Rotas de autenticação...
     Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
     
@@ -105,10 +105,12 @@ Route::group(['middleware' => 'auth'], function () {
     // Rotas para professores
     Route::group(['as' => 'prof.', 'prefix' => 'professores'], function () {
         Route::get('', ['as' => 'index', 'uses' => 'ProfessorController@index']);
-        Route::get('editar', ['as' => 'edit', 'uses' => 'ProfessorController@edit']);
+        // Route::get('editar', ['as' => 'edit', 'uses' => 'ProfessorController@edit']);
         Route::post('atualizar', ['as' => 'update', 'uses' => 'ProfessorController@update']);
         Route::get('excluir', ['as' => 'destroy', 'uses' => 'ProfessorController@destroy']);
         Route::get('pendentes', ['as' => 'pendentes', 'uses' => 'ProfessorController@pendentes']);
         Route::get('foto/{prof_id}', ['as' => 'foto', 'uses' => 'ProfessorController@foto']);
+        Route::get('novo/{id?}', ['as' => 'create', 'uses' => 'ProfessorController@create']);
+        Route::post('salvar', ['as' => 'store', 'uses' => 'ProfessorController@store']);
     });
-});
+// });

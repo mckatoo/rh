@@ -46,13 +46,24 @@
                 <form name=form role="form" class="form-k" action="{{ route('prof.store')}}" method="post" enctype="multipart/form-data">
                 <div class="col-lg-12">
                     {!! csrf_field() !!}
-                    @if(session('erro'))
-                        <div class="alert alert-danger">
-                            {{session('erro')}}
-                        </div>
+                    @if (count($errors) > 0)
+                       <div class="alert alert-danger">
+                           <ul>
+                               @foreach ($errors->all() as $error)
+                                   <li class="list-unstyled">{{ $error }}</li>
+                               @endforeach
+                           </ul>
+                       </div>
+                    @endif
+                    @if (session('erro')!==null)
+                      <div class="alert alert-danger">{{session('erro')}}</div>
                     @endif
                     <div class="col-lg-6">
                         <label class="label-k">FOTO 3X4</label>
+                        @if (($prof->foto !== "")and($prof->foto !== null))
+                            <img src="{{ route('prof.foto',$prof->id) }}" alt="{{ $prof->nome }}" class="img-thumbnail foto3x4" data-toggle="tooltip" data-placement="right" title="{{ $prof->foto }}">
+                        @endif
+
                         {!! Form::file('foto',[
                             'class'         =>'form-control',
                             'accept'        =>'image/*',
@@ -82,6 +93,10 @@
                             class="form-control input-cpf"
                             type="text"
                             name="cpf"
+                            
+                            @if (($prof->cpf !== "")and($prof->cpf !== null))
+                                value="{{ $prof->cpf }}"
+                            @endif
                             required="required"
                             autofocus>
                         </div>
@@ -93,6 +108,9 @@
                             class="form-control input-mae"
                             type="text"
                             name="mae"
+                            @if (($prof->mae !== "")and($prof->mae !== null))
+                                value="{{ $prof->mae }}"
+                            @endif
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -103,6 +121,11 @@
                             class="form-control input-pai"
                             type="text"
                             name="pai"
+                            
+                            @if (($prof->pai !== "")and($prof->pai !== null))
+                                value="{{ $prof->pai }}"
+                            @endif
+
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -113,6 +136,10 @@
                             class="form-control input-endereco"
                             type="text"
                             name="endereco"
+                            
+                            @if (($prof->endereco !== "")and($prof->endereco !== null))
+                                value="{{ $prof->endereco }}"
+                            @endif
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -123,6 +150,10 @@
                             class="form-control input-email"
                             type="email"
                             name="email"
+                            
+                            @if (($prof->email !== "")and($prof->email !== null))
+                                value="{{ $prof->email }}"
+                            @endif
                             @if(isset($user[0]['email']))
                                 value="{{ $user[0]['email'] }}"
                                 readonly="readonly"
@@ -137,6 +168,11 @@
                             class="form-control input-data"
                             type="text"
                             name="data_admissao"
+                            
+                            @if (($prof->data_admissao !== "")and($prof->data_admissao !== null))
+                                value="{{ $prof->data_admissao }}"
+                            @endif
+                            
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -147,6 +183,11 @@
                             class="form-control input-calc_total"
                             type="text"
                             name="ch_cursos_total"
+
+                            @if (($prof->ch_cursos_total !== "")and($prof->ch_cursos_total !== null))
+                                value="{{ $prof->ch_cursos_total }}"
+                            @endif
+                            
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -157,6 +198,11 @@
                             class="form-control input-calc_compl"
                             type="text"
                             name="ch_atividade_compl"
+
+                            @if (($prof->ch_atividade_compl !== "")and($prof->ch_atividade_compl !== null))
+                                value="{{ $prof->ch_atividade_compl }}"
+                            @endif
+                            
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -167,6 +213,11 @@
                             class="form-control input-nro_discip"
                             type="text"
                             name="num_disciplinas"
+
+                            @if (($prof->num_disciplinas !== "")and($prof->num_disciplinas !== null))
+                                value="{{ $prof->num_disciplinas }}"
+                            @endif
+                            
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -177,6 +228,11 @@
                             class="form-control input-tempo_mag"
                             type="text"
                             name="tempo_mag_sup_exp_pro_id"
+
+                            @if (($prof->tempo_mag_sup_exp_pro_id !== "")and($prof->tempo_mag_sup_exp_pro_id !== null))
+                                value="{{ $prof->tempo_mag_sup_exp_pro_id }}"
+                            @endif
+                            
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -187,6 +243,11 @@
                             class="form-control input-tempo_fora_mag"
                             type="text"
                             name="tempo_exp_pro_fora_mag_id"
+
+                            @if (($prof->tempo_exp_pro_fora_mag_id !== "")and($prof->tempo_exp_pro_fora_mag_id !== null))
+                                value="{{ $prof->tempo_exp_pro_fora_mag_id }}"
+                            @endif
+                            
                             required="required">
                         </div>
                         <div class="panel-footer">
