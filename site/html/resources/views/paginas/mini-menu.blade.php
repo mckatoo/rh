@@ -25,9 +25,9 @@
                         @endif
                         
                         <div class="hidden">
-                            {!! Form::text('name', $user[0]['name']) !!}
-                            {!! Form::text('tipo', $user[0]['tipo_User_id']) !!}
-                            {!! Form::email('email', $user[0]['email']) !!}
+                            {!! Form::text('name', Auth::user()->name) !!}
+                            {!! Form::text('tipo', Auth::user()->tipo->tipo) !!}
+                            {!! Form::email('email', Auth::user()->email) !!}
                         </div>
                         
                         <div class="form-group">

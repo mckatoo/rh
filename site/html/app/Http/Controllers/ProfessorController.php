@@ -153,28 +153,28 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit()
-    // {
-    //     $prof = \App\Professor::where('users_id',Auth::id())->first();
-    //     $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
-    //     $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
+    public function edit()
+    {
+        $prof = \App\Professor::where('users_id',Auth::id())->first();
+        $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
+        $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
 
-    //     $tipouser = Auth::user()->tipo->tipo;
-    //     if ($tipouser == 'Professor') {
-    //         $ext = 'base';
-    //         $div = 'class=container';
-    //     } else {
-    //         $ext = 'admin';
-    //         $div = 'id=page-wrapper';
-    //     }
+        $tipouser = Auth::user()->tipo->tipo;
+        if ($tipouser == 'Professor') {
+            $ext = 'base';
+            $div = 'class=container';
+        } else {
+            $ext = 'admin';
+            $div = 'id=page-wrapper';
+        }
 
-    //     try {
-    //         return view('edit-professores', compact('prof','tempo_mag','tempo_exp','ext','div'));
-    //     } catch (Exception $e) {
-    //         return $e->getMessage();
-    //     }
+        try {
+            return view('edit-professores', compact('prof','tempo_mag','tempo_exp','ext','div'));
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
 
-    // }
+    }
 
     /**
      * Update the specified resource in storage.

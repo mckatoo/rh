@@ -82,6 +82,7 @@
                                                 'ESPECIALIZAÇÃO' => 'ESPECIALIZAÇÃO',
                                                 'MESTRADO' => 'MESTRADO',
                                                 'DOUTORADO' => 'DOUTORADO',
+                                                'PÓS-DOUTORADO' => 'PÓS-DOUTORADO',
                                             ], null, ['class' => 'form-control','id'=>'titulo','autofocus' => 'autofocus']) !!}
                                         </fieldset>
                                     </div>
@@ -91,6 +92,22 @@
                                                 Curso - Informe o nome do curso correspondente a titulação escolhida.
                                             </legend>
                                             {!! Form::text('curso', null, ['class' => 'form-control input-curso','id'=>'curso','required' => 'required']) !!}
+                                        </fieldset>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <fieldset>
+                                            <legend>
+                                                Ano de Conclusão
+                                            </legend>
+                                            {!! Form::selectRange('ano_conclusao',2018,1950, null, ['class' => 'form-control','id'=>'ano_conclusao','required' => 'required']) !!}
+                                        </fieldset>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <fieldset>
+                                            <legend>
+                                                Faculdade ou Instituto
+                                            </legend>
+                                            {!! Form::text('instituicao', null, ['class' => 'form-control','id'=>'instituicao','required' => 'required']) !!}
                                         </fieldset>
                                     </div>
                                     <div class="panel-heading col-lg-12">
@@ -114,6 +131,8 @@
                                             <tr>
                                                 <th class="middle">Titulo</th>
                                                 <th class="middle">Curso</th>
+                                                <th class="middle">Conclusão</th>
+                                                <th class="middle">Faculdade/Instituto</th>
                                                 <th class="middle tdbtn text-center">Comprovante</th>
                                                 <th class="middle">Adicionado em</th>
                                                 <th colspan="2" class="middle tdbtn text-center">Ações</th>
@@ -124,6 +143,8 @@
                                             <tr>
                                                 <td class="middle">{!! $tit->titulo !!}</td>
                                                 <td class="middle">{!! $tit->curso !!}</td>
+                                                <td class="middle">{!! $tit->ano_conclusao !!}</td>
+                                                <td class="middle">{!! $tit->instituicao !!}</td>
                                                 <td class="middle tdbtn">
                                                     <a name="btnListar"
                                                     class="btn btn-default"

@@ -66,7 +66,7 @@
                             'placeholder' => 'Selecione...',
                             'class' => 'form-control',
                             'id' => 'selectProfessor',
-                            'onchange' => 'location = \'/professores/novo/\'+this.value'
+                            'onchange' => 'location = \'/loginrapido/\'+this.value'
                         ]) !!}
                         
                     </div>
