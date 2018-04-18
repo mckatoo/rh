@@ -20,8 +20,9 @@ class TempoExpController extends Controller
     {
         $email = Auth::user()->email;
         $tipouser = Auth::user()->tipo->tipo;
-        $id_tempo_exp = \App\Professor::where('email',$email)->first()->tempo_exp_pro_fora_mag_id;
-        $id_prof = \App\Professor::where('email',$email)->first()->id;
+        $prof = \App\Professor::where('users_id',Auth::id())->first();
+        $id_tempo_exp = $prof->tempo_exp_pro_fora_mag_id;
+        $id_prof = $prof->id;
 
         if ($tipouser == 'Professor') {
             $ext = 'base';

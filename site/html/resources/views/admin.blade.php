@@ -5,13 +5,15 @@
 
 <body>
 
-    <div id="wrapper">
-        @include('paginas.navbar')
-        @yield('content')
-    </div>
+	<div id="wrapper">
+		@include('paginas.navbar')
+		@yield('content')
+	</div>
 
-@yield('scriptjs')
-
+	@yield('scriptjs')
+	<footer class="footer">
+		Sistema desenvolvido pelo Departamento de Informática sob pedido do Departamento Pessoal da Uniesi.
+	</footer>
 </body>
 
 </html>

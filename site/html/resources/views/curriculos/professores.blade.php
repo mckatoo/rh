@@ -57,7 +57,7 @@
                                     <tr>
                                         <td rowspan="4" class="col-xs-2">
                                             @if (($prof->foto !== "") and ($prof->foto !== null))
-                                                <img src="{{ route('prof.foto',$prof->id) }}" alt="{{ $prof->nome }}" class="img-thumbnail foto3x4" data-toggle="tooltip" data-placement="right" title="{{ $prof->foto }}">
+                                                <img src="{{ route('prof.foto',$prof->users_id) }}" alt="{{ $prof->nome }}" class="img-thumbnail foto3x4" data-toggle="tooltip" data-placement="right" title="{{ $prof->foto }}">
                                             @endif
                                         </td>
                                         <td class="active col-xs-2"><b>CPF</b></td>
@@ -69,7 +69,7 @@
                                     </tr>
                                     <tr>
                                         <td class="active col-xs-2"><b>E-Mail</b></td>
-                                        <td class="col-xs-10">{{ $prof->email }}</td>
+                                        <td class="col-xs-10">{{ $email }}</td>
                                     </tr>
                                     <tr>
                                         <td class="active col-xs-2"><b>Data de Adminissão</b></td>

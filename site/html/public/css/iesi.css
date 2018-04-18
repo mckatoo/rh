@@ -8,10 +8,12 @@
     	bottom: 0;
     	left: 0;
     	width: 100%;
-    	height: 60px;
     	background-color: #212121;
-    	padding-top: 10px;
     	text-align: center;
+        color: white;
+        height: auto;
+        margin: 0px;
+        padding: 0px;
     }
 
     .footer a {
@@ -179,16 +181,16 @@ h5{
     margin-bottom: 5px;
 }
 
-.relatorio-titulo{
+.curriculo-titulo{
     background: #606060 !important;
     color: #FFFFFF !important;
 }
 
-.relatorio-titulo .text-muted{
+.curriculo-titulo .text-muted{
     color: #FFFFFF !important;
 }
 
-.relatorio-titulo{
+.curriculo-titulo{
     font-weight: bolder;
     color: #FFFFFF !important;
 }
@@ -251,7 +253,7 @@ input[type="file"] {
         page-break-after: auto !important;
         page-break-inside: avoid;
     }
-    .relatorio{
+    .curriculo{
         page-break-after: always;
     }
 }

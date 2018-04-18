@@ -39,10 +39,10 @@
                 <div class="form-group col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="glyphicon glyphicon-education"></i> Relatórios de Professores
+                            <i class="glyphicon glyphicon-education"></i> Curriculos de Professores
                         </div>
                         <div class="panel-body">
-                        {!! Form::open(['route' => 'relatorios.professor', 'method' => 'POST']) !!}
+                        {!! Form::open(['route' => 'curriculos.professor', 'method' => 'POST']) !!}
                             <fieldset>
                                 <legend>Por Professor</legend>
                                 {!! Form::select('professor',$professores,null,[

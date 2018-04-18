@@ -77,17 +77,3 @@
     </div>
     <!-- /#page-wrapper -->
 @endsection
-
-@section('footer')
-    <footer class="footer">
-		<div class="container">
-			<p class="text-muted">
-				<a id="tpl" style="display: none;" href="#" title="Top of page"><i class="fa fa-caret-square-o-up pull-left"></i></a>
-				<a target="_blank" href="http://www.iesi.edu.br">SisIntra</a> é &copy;
-				2004 - 2017 sob <a href="http://licenca/gpl" class="tblnk">GPL - General Public Licence</a>. Todos Direitos Reservados.
-				[<a href="#" class="tblnk">ver licença</a>]
-				<a id="tpr" style="display: none;" href="#" title="Top of page"><i class="fa fa-caret-square-o-up pull-right"></i></a>
-			</p>
-		</div>
-	</footer>
-@endsection

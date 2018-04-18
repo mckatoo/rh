@@ -5,13 +5,17 @@
 
 <body>
 	@yield('menu')
-    <div id="wrapper">
-    @yield('content')
-    </div>
+	<div id="wrapper">
+		@yield('content')
+	</div>
 
-    @yield('footer')
+	@yield('footer')
 
-    @yield('scriptjs')
+	@yield('scriptjs')
+
+	<footer class="footer">
+		Sistema desenvolvido pelo Departamento de Informática sob pedido do Departamento Pessoal da Uniesi.
+	</footer>
 
 </body>
 

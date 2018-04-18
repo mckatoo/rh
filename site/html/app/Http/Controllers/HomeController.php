@@ -57,19 +57,16 @@ class HomeController extends Controller
     {
         $tipo = Auth::user()->tipo->tipo;
         $email = Auth::user()->email;
-        $prof = \App\Professor::where('email', $email)->where('users_id',Auth::id())->get();
+        $prof = \App\Professor::where('users_id',Auth::id())->get();
         if (($tipo == 'Administrador') || ($tipo == 'Gerente')) {
             $idTipoProf = \App\TipoUser::where('tipo','Professor')->first()->id;
             $pendentes = \App\User::where('tipo_User_id',$idTipoProf)->get();
             \App\Notificacoes::create(['notificacao' => Auth::user()->name.' entrou no sistema.']);
             return view('dashboard', compact('pendentes'));
             // return view('dashboard');
-        } elseif ($prof->count()<1) {
+        } else {
             \App\Notificacoes::create(['notificacao' => 'O Professor '.Auth::user()->name.' entrou no sistema.']);
             return redirect(route('prof.create'));
-        } elseif ($prof->count() == 1) {
-            \App\Notificacoes::create(['notificacao' => 'O Professor '.Auth::user()->name.' entrou no sistema.']);
-            return redirect(route('prof.edit'));
         }
     }
 

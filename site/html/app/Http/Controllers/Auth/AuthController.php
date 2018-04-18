@@ -67,7 +67,7 @@ class AuthController extends Controller
 
     protected function getLogin()
     {
-        if (\Auth::check()) {
+        if (Auth::check()) {
             return redirect(route('index'));
         } else {
             try {

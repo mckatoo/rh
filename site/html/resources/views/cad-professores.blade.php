@@ -1,15 +1,15 @@
 @extends($ext)
 
 @section('linkcss')
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="{{ asset('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="{{ asset('/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+<!-- MetisMenu CSS -->
+<link href="{{ asset('/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    {{--  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->  --}}
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+{{--  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->  --}}
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -21,13 +21,13 @@
 
     <!-- Custom Fonts -->
     <link href="{{ asset('/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-@endsection
+    @endsection
 
-@section('menu')
+    @section('menu')
     @include('paginas.mini-menu')
-@stop
+    @stop
 
-@section('content')
+    @section('content')
     <div {{$div}}>
         <div class="row">
             <div class="col-lg-12">
@@ -44,24 +44,27 @@
                     </div>
                 </div>
                 <form name=form role="form" class="form-k" action="{{ route('prof.store')}}" method="post" enctype="multipart/form-data">
-                <div class="col-lg-12">
-                    {!! csrf_field() !!}
-                    @if (count($errors) > 0)
-                       <div class="alert alert-danger">
-                           <ul>
-                               @foreach ($errors->all() as $error)
-                                   <li class="list-unstyled">{{ $error }}</li>
-                               @endforeach
-                           </ul>
-                       </div>
-                    @endif
-                    @if (session('erro')!==null)
-                      <div class="alert alert-danger">{{session('erro')}}</div>
-                    @endif
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
+                        {!! csrf_field() !!}
+                        @if (isset($prof))
+                        {!! Form::hidden('id', $prof->id) !!}
+                        @endif
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                         <ul>
+                             @foreach ($errors->all() as $error)
+                             <li class="list-unstyled">{{ $error }}</li>
+                             @endforeach
+                         </ul>
+                     </div>
+                     @endif
+                     @if (session('erro')!==null)
+                     <div class="alert alert-danger">{{session('erro')}}</div>
+                     @endif
+                     <div class="col-lg-6">
                         <label class="label-k">FOTO 3X4</label>
-                        @if (($prof->foto !== "")and($prof->foto !== null))
-                            <img src="{{ route('prof.foto',$prof->id) }}" alt="{{ $prof->nome }}" class="img-thumbnail foto3x4" data-toggle="tooltip" data-placement="right" title="{{ $prof->foto }}">
+                        @if (isset($prof))
+                        <img src="{{ route('prof.foto',Auth::id()) }}" alt="{{ $prof->nome }}" class="img-thumbnail foto3x4" data-toggle="tooltip" data-placement="right" title="{{ $prof->foto }}">
                         @endif
 
                         {!! Form::file('foto',[
@@ -69,19 +72,19 @@
                             'accept'        =>'image/*',
                             'autofocus'     =>'autofocus',
                             'data-max-size' =>'100'
-                        ]) !!}
+                            ]) !!}
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-12">
+                    <div class="col-lg-12">
                         <div class="form-group-k col-lg-6">
                             <label class="label-k">NOME COMPLETO</label>
                             <input
                             class="form-control input-nome"
                             type="text"
                             name="nome"
-                            @if(isset($user[0]['name']))
-                                value="{{ $user[0]['name'] }}"
-                                readonly="readonly"
+                            @if(Auth::check()))
+                            value="{{ Auth::user()->name }}"
+                            readonly="readonly"
                             @endif
                             required="required">
                         </div>
@@ -94,8 +97,8 @@
                             type="text"
                             name="cpf"
                             
-                            @if (($prof->cpf !== "")and($prof->cpf !== null))
-                                value="{{ $prof->cpf }}"
+                            @if (isset($prof))
+                            value="{{ $prof->cpf }}"
                             @endif
                             required="required"
                             autofocus>
@@ -108,8 +111,8 @@
                             class="form-control input-mae"
                             type="text"
                             name="mae"
-                            @if (($prof->mae !== "")and($prof->mae !== null))
-                                value="{{ $prof->mae }}"
+                            @if (isset($prof))
+                            value="{{ $prof->mae }}"
                             @endif
                             required="required">
                         </div>
@@ -122,8 +125,8 @@
                             type="text"
                             name="pai"
                             
-                            @if (($prof->pai !== "")and($prof->pai !== null))
-                                value="{{ $prof->pai }}"
+                            @if (isset($prof))
+                            value="{{ $prof->pai }}"
                             @endif
 
                             required="required">
@@ -137,8 +140,8 @@
                             type="text"
                             name="endereco"
                             
-                            @if (($prof->endereco !== "")and($prof->endereco !== null))
-                                value="{{ $prof->endereco }}"
+                            @if (isset($prof))
+                            value="{{ $prof->endereco }}"
                             @endif
                             required="required">
                         </div>
@@ -149,15 +152,9 @@
                             <input
                             class="form-control input-email"
                             type="email"
-                            name="email"
-                            
-                            @if (($prof->email !== "")and($prof->email !== null))
-                                value="{{ $prof->email }}"
-                            @endif
-                            @if(isset($user[0]['email']))
-                                value="{{ $user[0]['email'] }}"
-                                readonly="readonly"
-                            @endif
+                            name="email"                            
+                            value="{{ Auth::user()->email }}"
+                            readonly="readonly"
                             required="required">
                         </div>
                         <div class="form-group-k col-lg-6">
@@ -169,8 +166,8 @@
                             type="text"
                             name="data_admissao"
                             
-                            @if (($prof->data_admissao !== "")and($prof->data_admissao !== null))
-                                value="{{ $prof->data_admissao }}"
+                            @if (isset($prof))
+                            value="{{ date('d/m/Y', strtotime(str_replace('-', '/', $prof->data_admissao))) }}"
                             @endif
                             
                             required="required">
@@ -184,8 +181,8 @@
                             type="text"
                             name="ch_cursos_total"
 
-                            @if (($prof->ch_cursos_total !== "")and($prof->ch_cursos_total !== null))
-                                value="{{ $prof->ch_cursos_total }}"
+                            @if (isset($prof))
+                            value="{{ $prof->ch_cursos_total }}"
                             @endif
                             
                             required="required">
@@ -199,8 +196,8 @@
                             type="text"
                             name="ch_atividade_compl"
 
-                            @if (($prof->ch_atividade_compl !== "")and($prof->ch_atividade_compl !== null))
-                                value="{{ $prof->ch_atividade_compl }}"
+                            @if (isset($prof))
+                            value="{{ $prof->ch_atividade_compl }}"
                             @endif
                             
                             required="required">
@@ -214,8 +211,8 @@
                             type="text"
                             name="num_disciplinas"
 
-                            @if (($prof->num_disciplinas !== "")and($prof->num_disciplinas !== null))
-                                value="{{ $prof->num_disciplinas }}"
+                            @if (isset($prof))
+                            value="{{ $prof->num_disciplinas }}"
                             @endif
                             
                             required="required">
@@ -229,8 +226,8 @@
                             type="text"
                             name="tempo_mag_sup_exp_pro_id"
 
-                            @if (($prof->tempo_mag_sup_exp_pro_id !== "")and($prof->tempo_mag_sup_exp_pro_id !== null))
-                                value="{{ $prof->tempo_mag_sup_exp_pro_id }}"
+                            @if (isset($prof))
+                            value="{{ $prof->tempomag()->first()->tempo }}"
                             @endif
                             
                             required="required">
@@ -244,8 +241,8 @@
                             type="text"
                             name="tempo_exp_pro_fora_mag_id"
 
-                            @if (($prof->tempo_exp_pro_fora_mag_id !== "")and($prof->tempo_exp_pro_fora_mag_id !== null))
-                                value="{{ $prof->tempo_exp_pro_fora_mag_id }}"
+                            @if (isset($prof))
+                            value="{{ $prof->tempoexp()->first()->tempo }}"
                             @endif
                             
                             required="required">
@@ -262,9 +259,9 @@
         <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
-@endsection
+    @endsection
 
-@section('scriptjs')
+    @section('scriptjs')
     <!-- jQuery -->
     <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 
@@ -280,4 +277,4 @@
     <!-- Meus Scripts -->
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/milton-mask.js') }}"></script>
-@endsection
+    @endsection

@@ -95,22 +95,21 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rmtipo', ['as' => 'rmtipo', 'uses' => 'PublicacaoController@rmTipo']);
     });
 
-    Route::group(['as' => 'relatorios.', 'prefix' => 'relatorios'], function () {
-        Route::get('', ['as' => 'index', 'uses' => 'RelatoriosController@index']);
-        Route::post('professor', ['as' => 'professor', 'uses' => 'RelatoriosController@professor']);
-        Route::get('professor', ['as' => 'professor', 'uses' => 'RelatoriosController@getProfessor']);
+    Route::group(['as' => 'curriculos.', 'prefix' => 'curriculos'], function () {
+        Route::get('', ['as' => 'index', 'uses' => 'CurriculosController@index']);
+        Route::post('professor', ['as' => 'professor', 'uses' => 'CurriculosController@postProfessor']);
+        Route::get('professor', ['as' => 'professor', 'uses' => 'CurriculosController@getProfessor']);
     });
 
 
     // Rotas para professores
     Route::group(['as' => 'prof.', 'prefix' => 'professores'], function () {
         Route::get('', ['as' => 'index', 'uses' => 'ProfessorController@index']);
-        Route::get('editar', ['as' => 'edit', 'uses' => 'ProfessorController@edit']);
         Route::post('atualizar', ['as' => 'update', 'uses' => 'ProfessorController@update']);
         Route::get('excluir', ['as' => 'destroy', 'uses' => 'ProfessorController@destroy']);
         Route::get('pendentes', ['as' => 'pendentes', 'uses' => 'ProfessorController@pendentes']);
-        Route::get('foto/{prof_id}', ['as' => 'foto', 'uses' => 'ProfessorController@foto']);
-        Route::get('novo/{id?}', ['as' => 'create', 'uses' => 'ProfessorController@create']);
+        Route::get('foto/{users_id}', ['as' => 'foto', 'uses' => 'ProfessorController@foto']);
+        Route::get('novo', ['as' => 'create', 'uses' => 'ProfessorController@create']);
         Route::post('salvar', ['as' => 'store', 'uses' => 'ProfessorController@store']);
     });
 });

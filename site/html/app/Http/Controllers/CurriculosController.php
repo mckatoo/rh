@@ -8,9 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 
-class RelatoriosController extends Controller
+class CurriculosController extends Controller
 {
-    public function professor(Request $request)
+    public function postProfessor(Request $request)
     {
         if ($request->professor == "") {
             $professores = \App\Professor::with('tempomag','tempoexp','cursos','ja_ministrou','publicacao','producao','telefones','titulos')->get();
@@ -18,13 +18,13 @@ class RelatoriosController extends Controller
             $publicacao = \App\Publicacoes::with('tipo','publicacao_curso')->get();
             $count = $professores->count();
         } else {
-            $professores = \App\Professor::with('tempomag','tempoexp','cursos','ja_ministrou','publicacao','producao','telefones','titulos')
-                ->where('id',$request->professor)->get();
+            $professores = \App\Professor::with('tempomag','tempoexp','cursos','ja_ministrou','publicacao','producao','telefones','titulos')->where('id',$request->professor)->get();
+            $email = \App\User::where('id',$professores->first()->users_id)->get()->first()->email;
             $count = 1;
             $producao = \App\Producoes::with('tipo','producao_curso')->where('professores_id',$professores->first()->id)->get();
             $publicacao = \App\Publicacoes::with('tipo','publicacao_curso')->where('professores_id',$professores->first()->id)->get();
         }
-        return view('relatorios.professores',compact('count','professores','producao','publicacao'));
+        return view('curriculos.professores',compact('count','professores','producao','publicacao','email'));
     }
 
     public function getProfessor()
@@ -37,11 +37,13 @@ class RelatoriosController extends Controller
         $producao = \App\Producoes::with('tipo','producao_curso')->where('professores_id',$prof_id)->get();
         $publicacao = \App\Publicacoes::with('tipo','publicacao_curso')->where('professores_id',$prof_id)->get();
 
+        $email = Auth::user()->email;
+
         $count = 1;
         
         $tipouser = Auth::user()->tipo->tipo;
 
-        return view('relatorios.professores',compact('count','professores','producao','publicacao'));
+        return view('curriculos.professores',compact('count','professores','producao','publicacao','email'));
     }
 
     /**
@@ -52,7 +54,7 @@ class RelatoriosController extends Controller
     public function index()
     {
         $professores = \App\Professor::lists('nome','id');
-        return view('relatorios.index',compact('professores'));
+        return view('curriculos.index',compact('professores'));
     }
 
     /**

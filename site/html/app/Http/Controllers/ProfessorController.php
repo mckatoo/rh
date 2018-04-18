@@ -40,27 +40,18 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    // public function create($id = null)
+    public function create()
     {
-        if ($id != null) {
-            $user = \App\User::where('id',$id)->get()->toArray();
-        }else{
-            $user = \Auth::user();
-        }
-
-        $tipoU = $user[0]['tipo_User_id'];
-        $tipo = \App\TipoUser::where('id',$tipoU)->get()[0]['tipo'];
-
+        $user = \Auth::user();
+        $tipoU = $user->tipo->id;
+        $tipo = \App\TipoUser::where('id',$tipoU)->get()->first()->tipo;
         
         $ext = 'base';
         $div = 'class=container';
-        $prof = \App\Professor::where('users_id',$id)->first();
-    
-        if ($prof->count() > 0) {
-            return view('cad-professores', compact('user','ext','div','prof'));
-        } else {
-            return view('cad-professores', compact('user','ext','div'));
-        }
+        $prof = \App\Professor::where('users_id',$user->id)->get()->first();
+
+        return view('cad-professores', compact('user','ext','div','prof'));
     }
 
     /**
@@ -71,7 +62,7 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        $prof = \App\Professor::where('email',$request->email);
+        $prof = \App\Professor::where('id',$request->id);
         if ($prof->count() > 0) {
             $prof = $prof->first();
         } else {
@@ -80,14 +71,11 @@ class ProfessorController extends Controller
 
         $prof->users_id = \App\User::where('email',$request->email)->pluck('id');
         $prof->nome = $request->nome;
-        $cpf = $request->cpf;
-        $cpf = preg_replace("/\D+/", "", $cpf);
+        $cpf = preg_replace("/\D+/", "", $request->cpf);
         $prof->cpf = $cpf;
         $prof->mae = $request->mae;
         $prof->pai = $request->pai;
         $prof->endereco = $request->endereco;
-        $prof->email = $request->email;
-
         $prof->data_admissao = DateTime::createFromFormat('d/m/Y', $request->data_admissao);
         $prof->ch_cursos_total = $request->ch_cursos_total;
         $prof->ch_atividade_compl = $request->ch_atividade_compl;
@@ -108,7 +96,7 @@ class ProfessorController extends Controller
 
         if ($request->file('foto') !== null) {
             $foto = $request->file('foto');
-            $localArmazem = storage_path().'/docprof/'.$prof->id.'/foto/';
+            $localArmazem = storage_path().'/docprof/'.Auth::id().'/foto/';
             $foto_sanitizada = filter_var($foto->getClientOriginalName(), FILTER_SANITIZE_URL);
             if (File::exists($localArmazem.'/'.$prof->foto)) {
                 File::delete($localArmazem.'/'.$prof->foto);
@@ -153,28 +141,28 @@ class ProfessorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
-        $prof = \App\Professor::where('users_id',Auth::id())->first();
-        $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
-        $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
+    // public function edit()
+    // {
+    //     $prof = \App\Professor::where('users_id',Auth::id())->first();
+    //     $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
+    //     $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
 
-        $tipouser = Auth::user()->tipo->tipo;
-        if ($tipouser == 'Professor') {
-            $ext = 'base';
-            $div = 'class=container';
-        } else {
-            $ext = 'admin';
-            $div = 'id=page-wrapper';
-        }
+    //     $tipouser = Auth::user()->tipo->tipo;
+    //     if ($tipouser == 'Professor') {
+    //         $ext = 'base';
+    //         $div = 'class=container';
+    //     } else {
+    //         $ext = 'admin';
+    //         $div = 'id=page-wrapper';
+    //     }
 
-        try {
-            return view('edit-professores', compact('prof','tempo_mag','tempo_exp','ext','div'));
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+    //     try {
+    //         return view('edit-professores', compact('prof','tempo_mag','tempo_exp','ext','div'));
+    //     } catch (Exception $e) {
+    //         return $e->getMessage();
+    //     }
 
-    }
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -188,7 +176,7 @@ class ProfessorController extends Controller
         $prof = \App\Professor::where('users_id',Auth::id())->first();
         if ($request->file('foto') !== null) {
             $foto = $request->file('foto');
-            $localArmazem = storage_path().'/docprof/'.$prof->id.'/foto/';
+            $localArmazem = storage_path().'/docprof/'.Auth::id().'/foto/';
             $foto_sanitizada = filter_var($foto->getClientOriginalName(), FILTER_SANITIZE_URL);
             if (file_exists($localArmazem.'/'.$prof->foto)) {
                 unlink($localArmazem.'/'.$prof->foto);
@@ -203,8 +191,6 @@ class ProfessorController extends Controller
         $prof->mae = $request->mae;
         $prof->pai = $request->pai;
         $prof->endereco = $request->endereco;
-        $prof->email = $request->email;
-
         $prof->data_admissao = DateTime::createFromFormat('d/m/Y', $request->data_admissao);
         $prof->ch_cursos_total = $request->ch_cursos_total;
         $prof->ch_atividade_compl = $request->ch_atividade_compl;
@@ -244,20 +230,19 @@ class ProfessorController extends Controller
         return redirect(route("tempo_mag.index"));
     }
 
-    public function foto($prof_id)
+    public function foto($users_id)
     {
-        $prof = \App\Professor::where('id',$prof_id)->first();
-        $path = storage_path() . '/docprof/' . $prof_id . '/foto/' . $prof->foto;
-        // dd($path);
+        $prof = \App\Professor::where('users_id',$users_id)->first();
+        $path = storage_path() . '/docprof/' . $users_id . '/foto/' . $prof->foto;
 
         if(!File::exists($path)) abort(404);
 
-        $file = File::get($path);
-        $type = File::mimeType($path);
+            $file = File::get($path);
+            $type = File::mimeType($path);
 
-        $response = \Response::make($file, 200);
-        $response->header("Content-Type", $type);
+            $response = \Response::make($file, 200);
+            $response->header("Content-Type", $type);
 
-        return $response;
+            return $response;
+        }
     }
-}
