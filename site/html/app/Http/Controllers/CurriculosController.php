@@ -16,6 +16,7 @@ class CurriculosController extends Controller
             $professores = \App\Professor::with('tempomag','tempoexp','cursos','ja_ministrou','publicacao','producao','telefones','titulos')->get();
             $producao = \App\Producoes::with('tipo','producao_curso')->get();
             $publicacao = \App\Publicacoes::with('tipo','publicacao_curso')->get();
+            $titulos = \App\Titulos::with('arquivos')->get();
             $count = $professores->count();
         } else {
             $professores = \App\Professor::with('tempomag','tempoexp','cursos','ja_ministrou','publicacao','producao','telefones','titulos')->where('id',$request->professor)->get();
@@ -23,14 +24,15 @@ class CurriculosController extends Controller
             $count = 1;
             $producao = \App\Producoes::with('tipo','producao_curso')->where('professores_id',$professores->first()->id)->get();
             $publicacao = \App\Publicacoes::with('tipo','publicacao_curso')->where('professores_id',$professores->first()->id)->get();
+            $titulos = \App\Titulos::with('arquivos')->get();
         }
-        return view('curriculos.professores',compact('count','professores','producao','publicacao','email'));
+        return view('curriculos.professores',compact('count','professores','producao','publicacao','titulos','email'));
     }
 
     public function getProfessor()
     {
         $professores = \App\Professor::with('tempomag','tempoexp','cursos','ja_ministrou','publicacao','producao','telefones','titulos')
-                ->where('users_id',Auth::id())->get();
+        ->where('users_id',Auth::id())->get();
 
         $prof_id = \App\Professor::where('users_id',Auth::id())->first()->id;
 
@@ -44,6 +46,12 @@ class CurriculosController extends Controller
         $tipouser = Auth::user()->tipo->tipo;
 
         return view('curriculos.professores',compact('count','professores','producao','publicacao','email'));
+    }
+
+    public function titulos($id_titulo)
+    {
+        $arq     = \App\ArquivoTitulos::where('titulos_id', $id_titulo)->get();
+        return view('curriculos/list_arq', compact('id_titulo', 'arq'));
     }
 
     /**

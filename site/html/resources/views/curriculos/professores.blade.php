@@ -163,7 +163,11 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($prof->titulos->all('orderBy','peso') as $tit)
-                                                    <tr>
+                                                    <tr
+                                                    class="pointer"
+                                                    data-toggle="modal"
+                                                    data-target="#comprovantes"
+                                                    onclick="$('#bind').load('{!! route('curriculos.titulo',$tit->id) !!}');">
                                                         <td class="col-lg-3">{{ $tit->titulo }}</td>
                                                         <td class="col-lg-3">{{ $tit->curso }}</td>
                                                         <td class="col-lg-3">{{ $tit->ano_conclusao }}</td>
@@ -310,6 +314,26 @@
                 </div>
             </div>
             @endforeach
+
+            <!-- Modal -->
+                    <div class="modal fade" id="comprovantes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modalx" aria-label="Close"><span aria-hidden="true" onclick="fecharModal('#comprovantes')">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Comprovantes</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="bind"></div> {{-- Container da view cad_arq.blade.php - 2º TELA --}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modalx" onclick="fecharModal('#comprovantes')">Sair</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
             <div class="rodape nao-imprimir text-center">
                 <a href="javascript:window.print()" class="btn btn-primary"><i class="fa fa-print fa-2x"></i>
                     <div class="text-center">

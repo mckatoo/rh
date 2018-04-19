@@ -19,4 +19,9 @@ class Titulos extends Model
     {
         return $this->belongsTo('App\Professor','professores_id');
     }
+
+    public function arquivos()
+    {
+        return $this->hasMany('App\ArquivoTitulos');
+    }
 }

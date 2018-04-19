@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('', ['as' => 'index', 'uses' => 'CurriculosController@index']);
         Route::post('professor', ['as' => 'professor', 'uses' => 'CurriculosController@postProfessor']);
         Route::get('professor', ['as' => 'professor', 'uses' => 'CurriculosController@getProfessor']);
+        Route::get('titulo/{id_titulo}', ['as' => 'titulo', 'uses' => 'CurriculosController@titulos']);
     });
 
 
