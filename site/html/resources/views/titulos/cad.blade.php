@@ -160,8 +160,8 @@
                                                 <td class="middle tdbtn">
                                                     <a href="#" class="btn btn-xs btn-primary" onclick="
                                                     preencheForm(
-                                                    ['#id','#titulo','#curso'],
-                                                    ['{{ $tit->id }}','{{ $tit->titulo }}','{{ $tit->curso }}'])
+                                                    ['#id','#titulo','#curso','#instituicao','#ano_conclusao'],
+                                                    ['{{ $tit->id }}','{{ $tit->titulo }}','{{ $tit->curso }}','{{ $tit->instituicao }}','{{ $tit->ano_conclusao }}'])
                                                     ">Editar</a>
                                                 </td>
                                                {{--  <td class="tdbtn middle">

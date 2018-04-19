@@ -167,7 +167,7 @@
                                                     class="pointer"
                                                     data-toggle="modal"
                                                     data-target="#comprovantes"
-                                                    onclick="$('#bind').load('{!! route('curriculos.titulo',$tit->id) !!}');">
+                                                    onclick="$('#bind').load('{!! route('curriculos.arq_titulo',$tit->id) !!}');">
                                                         <td class="col-lg-3">{{ $tit->titulo }}</td>
                                                         <td class="col-lg-3">{{ $tit->curso }}</td>
                                                         <td class="col-lg-3">{{ $tit->ano_conclusao }}</td>
@@ -254,23 +254,30 @@
                         <div class="panel-body">
                             @foreach ($publicacao as $pub)
                             <div class="col-lg-12">
-                                <div class="panel panel-default">
+                                <div
+                                class="panel panel-default pointer"
+                                data-toggle="modal"
+                                data-target="#comprovantes"
+                                onclick="$('#bind').load('{!! route('curriculos.arq_publicacao',$pub->id) !!}');">
                                     <div class="panel-heading">
-                                        <b>{{ $pub->tipo->tipo }} <br>
-                                        Cursos relacionados a esta publicação: </b>
-                                        <small class="text-muted">
-                                            @foreach($pub->publicacao_curso->all() as $i => $pcurso)
-                                            @if($i == count($pub->publicacao_curso) - 1)
-                                            {{ $pcurso->curso }}
-                                            @else
-                                            {{ $pcurso->curso." - " }}
-                                            @endif
-                                            @endforeach
-                                        </small>
+                                        <b>{{ $pub->tipo->tipo }}</b> <br>
                                     </div>
                                     <div class="panel-body">
                                         <div class="col-lg-12">
-                                            {{ $pub->desc }}
+                                            <b>Cursos relacionados a esta publicação:</b>
+                                                @foreach($pub->publicacao_curso->all() as $i => $pcurso)
+                                                    @if($i == count($pub->publicacao_curso) - 1)
+                                                        {{ $pcurso->curso }}
+                                                    @else
+                                                        {{ $pcurso->curso." - " }}
+                                                    @endif
+                                                @endforeach
+                                                <div class="panel">
+                                                    <b>Descrição: </b>
+                                                    <small class="text-muted">
+                                                        {{ $pub->desc }}
+                                                    </small>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -287,23 +294,30 @@
                         <div class="panel-body">
                             @foreach ($producao as $prod)
                             <div class="col-lg-12">
-                                <div class="panel panel-default">
+                                <div
+                                class="panel panel-default pointer"
+                                data-toggle="modal"
+                                data-target="#comprovantes"
+                                onclick="$('#bind').load('{!! route('curriculos.arq_producao',$prod->id) !!}');">
                                     <div class="panel-heading">
-                                        <b>{{ $prod->tipo->tipo }} <br>
-                                        Cursos relacionados a esta produção: </b>
-                                        <small class="text-muted">
-                                            @foreach($prod->producao_curso->all() as $i => $pcurso)
-                                            @if($i == count($prod->producao_curso) - 1)
-                                            {{ $pcurso->curso }}
-                                            @else
-                                            {{ $pcurso->curso." - " }}
-                                            @endif
-                                            @endforeach
-                                        </small>
+                                        <b>{{ $prod->tipo->tipo }} </b><br>
                                     </div>
                                     <div class="panel-body">
                                         <div class="col-lg-12">
-                                            {{ $prod->desc }}
+                                        <b>Cursos relacionados a esta produção:</b>
+                                            @foreach($prod->producao_curso->all() as $i => $pcurso)
+                                                @if($i == count($prod->producao_curso) - 1)
+                                                    {{ $pcurso->curso }}
+                                                @else
+                                                    {{ $pcurso->curso." - " }}
+                                                @endif
+                                            @endforeach
+                                            <div class="panel">
+                                                    <b>Descrição: </b>
+                                                    <small class="text-muted">
+                                                        {{ $prod->desc }}
+                                                    </small>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

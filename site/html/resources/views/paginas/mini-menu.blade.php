@@ -2,14 +2,15 @@
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('images/navbar-brand.png') }}" alt="IESI - Comissão Própria de Avaliação" /></a>
         <ul class="nav navbar-nav">
+            
             <li>
-                <a class=".a-mini-menu" data-toggle="modal" href='#modalSenha'>Trocar Senha</a>
+                <a class=".a-mini-menu" data-toggle="modal" href='#modalSenha'>Perfil</a>
                 <div class="modal fade" id="modalSenha" data-backdrop="false">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Trocar Senha</h4>
+                                <h4 class="modal-title">Perfil</h4>
                             </div>
                             <div class="modal-body">
                                 {!! Form::open(['route' => ['updateUser'], 'method' => 'POST', 'autocomplete' => 'off']) !!}
@@ -48,9 +49,13 @@
                     </div>
                 </div>
             </li>
+
+            
             <li>
                 <a href="{{ route('curriculos.professor') }}">Currículo</a>
             </li>
+            
+
             <li>
                 <a href="{{ url('logout') }}">Sair</a>
             </li>

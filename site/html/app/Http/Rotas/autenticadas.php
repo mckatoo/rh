@@ -95,11 +95,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rmtipo', ['as' => 'rmtipo', 'uses' => 'PublicacaoController@rmTipo']);
     });
 
+
+    // Rotas para curriculos
     Route::group(['as' => 'curriculos.', 'prefix' => 'curriculos'], function () {
         Route::get('', ['as' => 'index', 'uses' => 'CurriculosController@index']);
         Route::post('professor', ['as' => 'professor', 'uses' => 'CurriculosController@postProfessor']);
         Route::get('professor', ['as' => 'professor', 'uses' => 'CurriculosController@getProfessor']);
-        Route::get('titulo/{id_titulo}', ['as' => 'titulo', 'uses' => 'CurriculosController@titulos']);
+        Route::get('titulo/{id_titulo}/arquivos', ['as' => 'arq_titulo', 'uses' => 'CurriculosController@arq_titulo']);
+        Route::get('publicacao/{id_titulo}/arquivos', ['as' => 'arq_publicacao', 'uses' => 'CurriculosController@arq_publicacao']);
+        Route::get('producao/{id_titulo}/arquivos', ['as' => 'arq_producao', 'uses' => 'CurriculosController@arq_producao']);
     });
 
 

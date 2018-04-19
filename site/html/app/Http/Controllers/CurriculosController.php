@@ -48,10 +48,22 @@ class CurriculosController extends Controller
         return view('curriculos.professores',compact('count','professores','producao','publicacao','email'));
     }
 
-    public function titulos($id_titulo)
+    public function arq_titulo($id_titulo)
     {
         $arq     = \App\ArquivoTitulos::where('titulos_id', $id_titulo)->get();
-        return view('curriculos/list_arq', compact('id_titulo', 'arq'));
+        return view('curriculos/arq_titulo', compact('id_titulo', 'arq'));
+    }
+
+    public function arq_publicacao($publicacao_id)
+    {
+        $arq     = \App\ArquivosPublicacao::where('publicacao_id', $publicacao_id)->get();
+        return view('curriculos/arq_publicacao', compact('publicacao_id', 'arq'));
+    }
+
+    public function arq_producao($producao_id)
+    {
+        $arq     = \App\ArquivosProducao::where('producao_id', $producao_id)->get();
+        return view('curriculos/arq_producao', compact('producao_id', 'arq'));
     }
 
     /**
