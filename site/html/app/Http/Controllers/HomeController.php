@@ -12,12 +12,15 @@ class HomeController extends Controller
 
     public function updateUser(Request $request)
     {
-        $user = \App\User::where('email',$request->input('email'))->first();
+        $user = \App\User::where('id',$request->id)->first();
         $user->name = $request->name;
+        $user->email = $request->email;
         if ($request->password !== "") {
             $user->password = bcrypt($request->password);
         }
-        $user->tipo_User_id = $request->tipo;
+        if (Auth::user()->tipo->tipo == "Administrador") {
+            $user->tipo_User_id = $request->tipo;
+        }
         $user->save();
 
         return back()->with('sucesso','Usuário alterado com sucesso!');

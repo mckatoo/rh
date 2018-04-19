@@ -62,13 +62,14 @@
                                 {{session('erro')}}
                             </div>
                         @endif
+                        {!! Form::hidden('id', $user->id) !!}
                         <div class="form-group col-lg-6">
                             {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
                             {!! Form::text('name', $user->name, ['class' => 'form-control', 'id' => 'name', 'autofocus' => 'autofocus']) !!}
                         </div>
                         <div class="form-group col-lg-6">
                             {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
-                            {!! Form::email('email', $user->email, ['class' => 'form-control', 'id' => 'email', 'required' => 'required', 'readonly' => 'readonly']) !!}
+                            {!! Form::email('email', $user->email, ['class' => 'form-control', 'id' => 'email', 'required' => 'required']) !!}
                         </div>
                         <div class="form-group col-lg-6">
                             {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}

@@ -26,17 +26,26 @@
                         @endif
                         
                         <div class="hidden">
-                            {!! Form::text('name', Auth::user()->name) !!}
+                            {!! Form::text('id', Auth::id()) !!}
                             {!! Form::text('tipo', Auth::user()->tipo->tipo) !!}
-                            {!! Form::email('email', Auth::user()->email) !!}
                         </div>
                         
                         <div class="form-group">
-                            {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}
-                            {!! Form::password('password', ['class' => 'form-control', 'id' => 'password','required' => 'required', 'autofocus' => 'autofocus']) !!}
+                            {!! Form::label('name', 'Nome', ['class' => 'control-label']) !!}
+                            {!! Form::text('name', Auth::user()->name, ['class' => 'form-control', 'id' => 'name','required' => 'required', 'autofocus' => 'autofocus']) !!}
+                        </div>
+                        
+                        <div class="form-group">
+                            {!! Form::label('email', 'E-Mail', ['class' => 'control-label']) !!}
+                            {!! Form::email('email', Auth::user()->email, ['class' => 'form-control', 'id' => 'email','required' => 'required', 'autofocus' => 'autofocus']) !!}
+                        </div>
+                        
+                        <div class="form-group">
+                            {!! Form::label('password', 'Nova Senha', ['class' => 'control-label']) !!}
+                            {!! Form::password('password', ['class' => 'form-control', 'id' => 'password','required' => 'required']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('password_confirmation', 'Confirmar senha', ['class' => 'control-label']) !!}
+                            {!! Form::label('password_confirmation', 'Confirmar nova senha', ['class' => 'control-label']) !!}
                             {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation','required' => 'required']) !!}
                         </div>
                         <div class="modal-footer">
