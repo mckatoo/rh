@@ -81,12 +81,18 @@ class ProfessorController extends Controller
         $prof->ch_atividade_compl = $request->ch_atividade_compl;
         $prof->num_disciplinas = $request->num_disciplinas;
 
-        $tempo_mag = new TempoMagSupExpPro();
-        $tempo_mag->tempo = $request->tempo_mag_sup_exp_pro_id;
+        if (is_null($prof->first())) {
+            $tempo_mag = new TempoMagSupExpPro();
+            $tempo_exp = new TempoExpProForaMag();
+        } else {
+            $tempo_mag = \App\TempoMagSupExpPro::find($prof->tempo_mag_sup_exp_pro_id);
+            $tempo_exp = \App\TempoExpProForaMag::find($prof->tempo_exp_pro_fora_mag_id);
+        }
+
+        $tempo_mag->tempo = $request->tempo_mag;
         $tempo_mag->save();
 
-        $tempo_exp = new TempoExpProForaMag();
-        $tempo_exp->tempo = $request->tempo_exp_pro_fora_mag_id;
+        $tempo_exp->tempo = $request->tempo_exp;
         $tempo_exp->save();
 
         $id_tempo_mag = $tempo_mag->id;

@@ -49,7 +49,7 @@
                 </div>
             </li>
             <li>
-                <a href="{{ route('curriculos.professor') }}">Currículos</a>
+                <a href="{{ route('curriculos.professor') }}">Currículo</a>
             </li>
             <li>
                 <a href="{{ url('logout') }}">Sair</a>

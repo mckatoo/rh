@@ -58,7 +58,7 @@ class TelefoneProfController extends Controller
     public function store(Request $request)
     {
         $email = Auth::user()->email;
-        $id_prof = \App\Professor::where('email',$email)->first()->id;
+        $id_prof = \App\Professor::where('users_id',Auth::id())->first()->id;
         $tel = new TelefoneProf();
         $tel->telefone = Input::get('telefone');
         $tel->professores_id = $id_prof;

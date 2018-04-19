@@ -44,7 +44,7 @@ class TituloController extends Controller
     public function store(Request $request)
     {
         $email   = Auth::user()->email;
-        $id_prof = \App\Professor::where('email', $email)->first()->id;
+        $id_prof = \App\Professor::where('users_id', Auth::id())->first()->id;
         if ($request->id === "") {
             $titulo = new \App\Titulos();
         } else {
@@ -115,7 +115,7 @@ class TituloController extends Controller
     {
         $email    = Auth::user()->email;
         $tipouser = Auth::user()->tipo->tipo;
-        $id_prof  = \App\Professor::where('email', $email)->first()->id;
+        $id_prof  = \App\Professor::where('users_id', Auth::id())->first()->id;
 
         $arq = \App\ArquivoTitulos::where('titulos_id', $id_titulo)->get();
 

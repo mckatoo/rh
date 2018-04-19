@@ -224,7 +224,7 @@
                             <input
                             class="form-control input-tempo_mag"
                             type="text"
-                            name="tempo_mag_sup_exp_pro_id"
+                            name="tempo_mag"
 
                             @if (isset($prof))
                             value="{{ $prof->tempomag()->first()->tempo }}"
@@ -239,7 +239,7 @@
                             <input
                             class="form-control input-tempo_fora_mag"
                             type="text"
-                            name="tempo_exp_pro_fora_mag_id"
+                            name="tempo_exp"
 
                             @if (isset($prof))
                             value="{{ $prof->tempoexp()->first()->tempo }}"

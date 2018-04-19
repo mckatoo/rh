@@ -236,9 +236,9 @@
                             </fieldset>
                                 <a class="btn btn-primary pull-left" href="{{ route('publicacoes.index') }}">VOLTAR</a>
                                 @if ($prod->count() === 0)
-                                    <a class="btn btn-primary pull-right disabled" href="{{ route('relatorios.professor') }}">PRÓXIMO</a>
+                                    <a class="btn btn-primary pull-right disabled" href="{{ route('curriculos.professor') }}">PRÓXIMO</a>
                                 @else
-                                    <a class="btn btn-primary pull-right" href="{{ route('relatorios.professor') }}">PRÓXIMO</a>
+                                    <a class="btn btn-primary pull-right" href="{{ route('curriculos.professor') }}">PRÓXIMO</a>
                                 @endif
                         </div>
                     <!-- Modal -->
