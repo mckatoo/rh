@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>IESI - Centro de Estudos Superiores de Campinas</title>
+    <title>UNIESI - Centro Universitário de Itapira</title>
 
     @yield('linkcss')
 
