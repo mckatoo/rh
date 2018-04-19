@@ -38,7 +38,7 @@
         @endif
             <div class="row nao-imprimir">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Relatório de Professores</h1>
+                    <h1 class="page-header">Curriculo</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

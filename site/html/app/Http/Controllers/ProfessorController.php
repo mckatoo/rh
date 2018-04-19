@@ -235,14 +235,16 @@ class ProfessorController extends Controller
         $prof = \App\Professor::where('users_id',$users_id)->first();
         $path = storage_path() . '/docprof/' . $users_id . '/foto/' . $prof->foto;
 
-        if(!File::exists($path)) abort(404);
-
-            $file = File::get($path);
-            $type = File::mimeType($path);
-
-            $response = \Response::make($file, 200);
-            $response->header("Content-Type", $type);
-
-            return $response;
+        if(!File::exists($path)){
+            abort(404);
         }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = \Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
+}
