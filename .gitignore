@@ -4,3 +4,4 @@ php
 exec-rh
 exec-db
 site/laravel/storage
+site/html/.phpintel

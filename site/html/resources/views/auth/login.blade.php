@@ -48,12 +48,6 @@
                                 {!! Form::label('password', 'Senha', ['class' => 'control-label']) !!}
                                 {!! Form::password('password', ['class' => 'form-control', 'id' => 'password']) !!}
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    {!! Form::checkbox('remember', false, ['class' => 'form-control']) !!}
-                                    Lembre-me
-                                </label>
-                            </div>
                             <button type="submit" class="btn btn-success btn-block">Entrar</button>
                         </fieldset>
                         {!! Form::close() !!}
